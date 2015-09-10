@@ -7,15 +7,29 @@
 //
 
 import UIKit
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  // OAuthSwift magic
+  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    if let path = url.path {
+      if url.host == "oauth-callback" && path.hasPrefix("/twitter") {
+        OAuth1Swift.handleOpenURL(url)
+      }
+    }
+    
+    return true
+  }
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+     application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+    UINavigationBar.appearance().barTintColor = UIColor(red: 13 / 255.0, green: 153 / 255.0, blue: 252 / 255.0, alpha: 1.0)
+    UINavigationBar.appearance().barStyle = UIBarStyle.Black
+    
     return true
   }
 
