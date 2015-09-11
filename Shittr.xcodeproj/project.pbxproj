@@ -14,6 +14,9 @@
 		383DA7521BA22A97002C3CBE /* ShittrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DA7511BA22A97002C3CBE /* ShittrTests.swift */; };
 		383DA75D1BA22CF4002C3CBE /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DA75C1BA22CF4002C3CBE /* LoginController.swift */; };
 		383DA7611BA23A8F002C3CBE /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DA7601BA23A8F002C3CBE /* TwitterClient.swift */; };
+		383DA7631BA24532002C3CBE /* TweetListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DA7621BA24532002C3CBE /* TweetListController.swift */; };
+		383DA7651BA2505E002C3CBE /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DA7641BA2505E002C3CBE /* Tweet.swift */; };
+		383DA7681BA25256002C3CBE /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DA7671BA25256002C3CBE /* TweetCell.swift */; };
 		8F9D31D4354D46E44324E819 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE88D46BF60E19F810D3C2F1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -40,6 +43,9 @@
 		383DA7511BA22A97002C3CBE /* ShittrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShittrTests.swift; sourceTree = "<group>"; };
 		383DA75C1BA22CF4002C3CBE /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		383DA7601BA23A8F002C3CBE /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
+		383DA7621BA24532002C3CBE /* TweetListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListController.swift; sourceTree = "<group>"; };
+		383DA7641BA2505E002C3CBE /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		383DA7671BA25256002C3CBE /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		BE88D46BF60E19F810D3C2F1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F40C91B3F8F65606768257 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +92,7 @@
 		383DA7381BA22A97002C3CBE /* Shittr */ = {
 			isa = PBXGroup;
 			children = (
+				383DA7661BA25242002C3CBE /* Views */,
 				383DA75F1BA23A81002C3CBE /* Lib */,
 				383DA75E1BA23A79002C3CBE /* Models */,
 				383DA75B1BA22CD2002C3CBE /* Controllers */,
@@ -127,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				383DA75C1BA22CF4002C3CBE /* LoginController.swift */,
+				383DA7621BA24532002C3CBE /* TweetListController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 		383DA75E1BA23A79002C3CBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				383DA7641BA2505E002C3CBE /* Tweet.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -144,6 +153,14 @@
 				383DA7601BA23A8F002C3CBE /* TwitterClient.swift */,
 			);
 			name = Lib;
+			sourceTree = "<group>";
+		};
+		383DA7661BA25242002C3CBE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				383DA7671BA25256002C3CBE /* TweetCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		8C1E7BBA883EC5E0E9F710CB /* Pods */ = {
@@ -315,6 +332,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				383DA73C1BA22A97002C3CBE /* AppDelegate.swift in Sources */,
+				383DA7651BA2505E002C3CBE /* Tweet.swift in Sources */,
+				383DA7631BA24532002C3CBE /* TweetListController.swift in Sources */,
+				383DA7681BA25256002C3CBE /* TweetCell.swift in Sources */,
 				383DA7611BA23A8F002C3CBE /* TwitterClient.swift in Sources */,
 				383DA75D1BA22CF4002C3CBE /* LoginController.swift in Sources */,
 			);

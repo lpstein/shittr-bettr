@@ -9,6 +9,7 @@
 import UIKit
 import OAuthSwift
 import Locksmith
+import SwiftyJSON
 
 struct OAuth {
   static let OAuthToken = "oauth_token"
@@ -17,6 +18,11 @@ struct OAuth {
 
 class TwitterClient: NSObject {
   static let sharedInstance = TwitterClient()
+  static let consumerKey = "idD00emRQLmntEpTqYveTJNP2"
+  static let consumerSecret = "6kt9jb6aAEAyayrQJ2fz748Q37mEdjXCkTnndV7QHojQTQOBzX"
+  
+  let urlCache = NSURLCache(memoryCapacity: 0, diskCapacity: 1024 * 1024 * 2, diskPath: nil)
+  var client: OAuthSwiftClient!
   
   var oauthToken: String!
   var oauthTokenSecret: String!
@@ -25,21 +31,25 @@ class TwitterClient: NSObject {
     let (creds, error) = Locksmith.loadDataForUserAccount("twitter")
     
     if let creds = creds, token = creds[OAuth.OAuthToken] as? String, secret = creds[OAuth.OAuthTokenSecret] as? String {
-      oauthToken = token
-      oauthTokenSecret = secret
+      self.client = OAuthSwiftClient(
+        consumerKey: TwitterClient.consumerKey,
+        consumerSecret: TwitterClient.consumerSecret,
+        accessToken: token,
+        accessTokenSecret: secret
+      )
     }
   }
   
   var hasCredentials: Bool {
     get {
-      return oauthToken != nil && oauthTokenSecret != nil
+      return client != nil
     }
   }
   
   func loginWithCompletion(completion: (NSError?) -> ()) {
     let oauth = OAuth1Swift(
-      consumerKey: "idD00emRQLmntEpTqYveTJNP2",
-      consumerSecret: "6kt9jb6aAEAyayrQJ2fz748Q37mEdjXCkTnndV7QHojQTQOBzX",
+      consumerKey: TwitterClient.consumerKey,
+      consumerSecret: TwitterClient.consumerSecret,
       requestTokenUrl: "https://api.twitter.com/oauth/request_token",
       authorizeUrl: "https://api.twitter.com/oauth/authorize",
       accessTokenUrl: "https://api.twitter.com/oauth/access_token"
@@ -50,12 +60,30 @@ class TwitterClient: NSObject {
         OAuth.OAuthTokenSecret: credential.oauth_token_secret
       ], forUserAccount: "twitter")
       
-      self.oauthToken = credential.oauth_token
-      self.oauthTokenSecret = credential.oauth_token_secret
+      self.client = OAuthSwiftClient(
+        consumerKey: TwitterClient.consumerKey,
+        consumerSecret: TwitterClient.consumerSecret,
+        accessToken: credential.oauth_token,
+        accessTokenSecret: credential.oauth_token_secret
+      )
       
       completion(nil)
     }) { (error) -> Void in
       completion(error)
+    }
+  }
+  
+  func fetchTweets(cached: Bool, completion: ([Tweet], NSError?) -> Void) {
+    let params = Dictionary<String, AnyObject>()
+    client.get("https://api.twitter.com/1.1/statuses/home_timeline.json", parameters: params, success: { (data, response) -> Void in
+      var tweets: [Tweet] = []
+      let json = JSON(data: data).array!
+      for entry in json {
+        tweets.append(Tweet(json: entry))
+      }
+      completion(tweets, nil)
+    }) { (error) -> Void in
+      completion([], error)
     }
   }
 }

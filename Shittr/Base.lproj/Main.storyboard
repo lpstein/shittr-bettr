@@ -45,17 +45,34 @@
         <!--Shittr-->
         <scene sceneID="cth-7p-iqg">
             <objects>
-                <tableViewController id="Hel-0D-Szq" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x0U-Wq-TVN">
+                <tableViewController id="Hel-0D-Szq" customClass="TweetListController" customModule="Shittr" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="22" sectionFooterHeight="22" id="x0U-Wq-TVN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="GCZ-Ag-YZ4">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.shazam.cell.tweet" rowHeight="38" id="GCZ-Ag-YZ4" customClass="TweetCell" customModule="Shittr" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GCZ-Ag-YZ4" id="7qd-UZ-52b">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The tweet content" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FL-XH-l2t">
+                                            <rect key="frame" x="8" y="8" width="139" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="1FL-XH-l2t" secondAttribute="bottom" constant="8" id="365-PW-QKu"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1FL-XH-l2t" secondAttribute="trailing" constant="8" id="a5q-db-5RO"/>
+                                        <constraint firstItem="1FL-XH-l2t" firstAttribute="top" secondItem="7qd-UZ-52b" secondAttribute="top" constant="8" id="iuX-wO-DL3"/>
+                                        <constraint firstItem="1FL-XH-l2t" firstAttribute="leading" secondItem="7qd-UZ-52b" secondAttribute="leading" constant="8" id="yZL-D9-Fzq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="tweetTextLabel" destination="1FL-XH-l2t" id="IRh-tW-05d"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

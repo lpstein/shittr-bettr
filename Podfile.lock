@@ -1,13 +1,16 @@
 PODS:
   - Locksmith (1.2.2)
   - OAuthSwift (0.3.7)
+  - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - Locksmith
   - OAuthSwift (~> 0.3.7)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Locksmith: c84c10bf23f99e6d04703dba65065dc38b038d88
   OAuthSwift: d5a96a1a92329e3b4bb63b682c3e4e89a8698dc8
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
 COCOAPODS: 0.38.2
