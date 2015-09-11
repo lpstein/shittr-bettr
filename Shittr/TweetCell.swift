@@ -38,7 +38,7 @@ class TweetCell: UITableViewCell {
       
         // Use the "On" version of images if this user has performed
         // actions on the tweet in question
-        if tweet.didRetweet || true {
+        if tweet.didRetweet {
           retweetImage.image = UIImage(named: "RetweetOn")
         }
         if tweet.didFavorite {

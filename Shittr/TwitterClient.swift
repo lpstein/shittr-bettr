@@ -28,15 +28,12 @@ class TwitterClient: NSObject {
   var oauthTokenSecret: String!
   
   override init() {
+    super.init()
+    
     let (creds, error) = Locksmith.loadDataForUserAccount("twitter")
     
     if let creds = creds, token = creds[OAuth.OAuthToken] as? String, secret = creds[OAuth.OAuthTokenSecret] as? String {
-      self.client = OAuthSwiftClient(
-        consumerKey: TwitterClient.consumerKey,
-        consumerSecret: TwitterClient.consumerSecret,
-        accessToken: token,
-        accessTokenSecret: secret
-      )
+      self.createClient(token, secret: secret)
     }
   }
   
@@ -60,12 +57,7 @@ class TwitterClient: NSObject {
         OAuth.OAuthTokenSecret: credential.oauth_token_secret
       ], forUserAccount: "twitter")
       
-      self.client = OAuthSwiftClient(
-        consumerKey: TwitterClient.consumerKey,
-        consumerSecret: TwitterClient.consumerSecret,
-        accessToken: credential.oauth_token,
-        accessTokenSecret: credential.oauth_token_secret
-      )
+      self.createClient(credential.oauth_token, secret: credential.oauth_token_secret)
       
       completion(nil)
     }) { (error) -> Void in
@@ -107,5 +99,14 @@ class TwitterClient: NSObject {
   
   private func fetch(cached: Bool, url: String, completion: (NSData?, NSError?) -> Void) {
     // TODO
+  }
+  
+  private func createClient(token: String, secret: String) {
+    client = OAuthSwiftClient(
+      consumerKey: TwitterClient.consumerKey,
+      consumerSecret: TwitterClient.consumerSecret,
+      accessToken: token,
+      accessTokenSecret: secret
+    )
   }
 }

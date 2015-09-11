@@ -22,7 +22,6 @@ class TweetListController: UITableViewController {
     
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
-//    tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     
     reload()
   }

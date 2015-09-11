@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+//    application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     UINavigationBar.appearance().barTintColor = UIColor(red: 13 / 255.0, green: 153 / 255.0, blue: 252 / 255.0, alpha: 1.0)
     UINavigationBar.appearance().tintColor = UIColor.whiteColor()
     UINavigationBar.appearance().barStyle = UIBarStyle.Black
