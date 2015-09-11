@@ -1,14 +1,40 @@
 PODS:
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - DateTools (1.7.0)
   - Locksmith (1.2.2)
   - OAuthSwift (0.3.7)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
+  - AFNetworking
+  - DateTools
   - Locksmith
   - OAuthSwift (~> 0.3.7)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Locksmith: c84c10bf23f99e6d04703dba65065dc38b038d88
   OAuthSwift: d5a96a1a92329e3b4bb63b682c3e4e89a8698dc8
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33

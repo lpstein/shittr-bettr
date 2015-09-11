@@ -19,8 +19,8 @@ class TweetListController: UITableViewController {
     tableView.insertSubview(refreshControl!, atIndex: 0)
     
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 50
-    tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    tableView.estimatedRowHeight = 80
+//    tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     
     reload()
   }
@@ -59,7 +59,15 @@ class TweetListController: UITableViewController {
     return cell
   }
   
-//  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//    
-//  }
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    if tableView.respondsToSelector("setSeparatorInset:") {
+      tableView.separatorInset = UIEdgeInsetsZero
+    }
+    if tableView.respondsToSelector("setLayoutMargins:") {
+      tableView.layoutMargins = UIEdgeInsetsZero
+    }
+    if cell.respondsToSelector("setLayoutMargins:") {
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
+  }
 }
