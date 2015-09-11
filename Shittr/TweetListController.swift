@@ -10,6 +10,7 @@ import UIKit
 
 class TweetListController: UITableViewController {
   var tweets: [Tweet] = []
+  var destinationTweet: Tweet? = nil
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -68,6 +69,17 @@ class TweetListController: UITableViewController {
     }
     if cell.respondsToSelector("setLayoutMargins:") {
       cell.layoutMargins = UIEdgeInsetsZero
+    }
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    destinationTweet = tweets[indexPath.row]
+    performSegueWithIdentifier("com.shazam.segue.tweet", sender: self)
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let controller = segue.destinationViewController as? TweetDetailController {
+      controller.tweet = destinationTweet
     }
   }
 }
