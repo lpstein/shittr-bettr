@@ -180,6 +180,27 @@
                                     <outlet property="whenLabel" destination="M5u-Z1-9gO" id="b7T-vX-Vxd"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.shazam.cell.spinner" rowHeight="36" id="VQn-eg-0cg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VQn-eg-0cg" id="BDr-U8-urv">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-T1-WEr">
+                                            <rect key="frame" x="290" y="8" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="K1y-y9-Ez7"/>
+                                                <constraint firstAttribute="height" constant="20" id="kWT-j4-ftu"/>
+                                            </constraints>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerX" secondItem="3NK-T1-WEr" secondAttribute="centerX" id="b0a-mp-wTv"/>
+                                        <constraint firstItem="3NK-T1-WEr" firstAttribute="top" secondItem="BDr-U8-urv" secondAttribute="top" constant="8" id="sjW-7s-AF3"/>
+                                        <constraint firstAttribute="bottom" secondItem="3NK-T1-WEr" secondAttribute="bottom" constant="8" id="zAo-hk-57N"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Hel-0D-Szq" id="YcD-5f-hkX"/>

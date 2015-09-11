@@ -11,6 +11,7 @@ import UIKit
 class TweetListController: UITableViewController {
   var tweets: [Tweet] = []
   var destinationTweet: Tweet? = nil
+  var fetchingMoreTweets = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -51,10 +52,20 @@ class TweetListController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return tweets.count
+    return tweets.count + 1 // Extra one for a loading spinner cell
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    if indexPath.row == tweets.count {
+      if tweets.count != 0 {
+        getMoreTweets()
+      }
+      let cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.spinner", forIndexPath: indexPath) as! UITableViewCell
+      let spinner = cell.contentView.subviews[0] as! UIActivityIndicatorView
+      spinner.startAnimating()
+      return cell
+    }
+    
     var cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.tweet", forIndexPath: indexPath) as! TweetCell
     cell.tweet = tweets[indexPath.row]
     return cell
@@ -73,6 +84,10 @@ class TweetListController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.row >= tweets.count {
+      return
+    }
+    
     destinationTweet = tweets[indexPath.row]
     performSegueWithIdentifier("com.shazam.segue.tweet", sender: self)
   }
@@ -80,6 +95,26 @@ class TweetListController: UITableViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let controller = segue.destinationViewController as? TweetDetailController {
       controller.tweet = destinationTweet
+    }
+  }
+  
+  private func getMoreTweets() {
+    if !fetchingMoreTweets {
+      
+      fetchingMoreTweets = true
+      TwitterClient.sharedInstance.fetchTweets(true, afterTweet: self.tweets.last!, completion: { (moreTweets, error) -> Void in
+        
+        self.fetchingMoreTweets = false
+        
+        // Silently fail if we errored out
+        if let error = error {
+          NSLog(error.description)
+          return
+        }
+        
+        self.tweets += moreTweets
+        self.tableView.reloadData()
+      })
     }
   }
 }

@@ -18,10 +18,10 @@ struct OAuth {
 
 class TwitterClient: NSObject {
   static let sharedInstance = TwitterClient()
-  static let consumerKey = "idD00emRQLmntEpTqYveTJNP2"
-  static let consumerSecret = "6kt9jb6aAEAyayrQJ2fz748Q37mEdjXCkTnndV7QHojQTQOBzX"
+  private static let consumerKey = "idD00emRQLmntEpTqYveTJNP2"
+  private static let consumerSecret = "6kt9jb6aAEAyayrQJ2fz748Q37mEdjXCkTnndV7QHojQTQOBzX"
   
-  let urlCache = NSURLCache(memoryCapacity: 0, diskCapacity: 1024 * 1024 * 2, diskPath: nil)
+  private let urlCache = NSURLCache(memoryCapacity: 0, diskCapacity: 1024 * 1024 * 2, diskPath: nil)
   var client: OAuthSwiftClient!
   
   var oauthToken: String!
@@ -74,16 +74,38 @@ class TwitterClient: NSObject {
   }
   
   func fetchTweets(cached: Bool, completion: ([Tweet], NSError?) -> Void) {
-    let params = Dictionary<String, AnyObject>()
-    client.get("https://api.twitter.com/1.1/statuses/home_timeline.json", parameters: params, success: { (data, response) -> Void in
+    fetchTweetsFromUrl(cached, url: "https://api.twitter.com/1.1/statuses/home_timeline.json", completion: completion)
+  }
+  
+  func fetchTweets(cached: Bool, afterTweet tweet: Tweet, completion: ([Tweet], NSError?) -> Void) {
+    fetchTweetsFromUrl(cached, url: "https://api.twitter.com/1.1/statuses/home_timeline.json", params: [
+      "max_id" : tweet.id
+    ], completion: completion)
+  }
+  
+  private func fetchTweetsFromUrl(cached: Bool, url: String, params: Dictionary<String, AnyObject>? = nil, completion: ([Tweet], NSError?) -> Void) {
+    var params = params
+    if params == nil {
+      params = Dictionary<String, AnyObject>()
+    }
+    
+    client.get(url, parameters: params!, success: { (data, response) -> Void in
       var tweets: [Tweet] = []
       let json = JSON(data: data).array!
       for entry in json {
         tweets.append(Tweet(json: entry))
       }
       completion(tweets, nil)
-    }) { (error) -> Void in
-      completion([], error)
-    }
+    }, failure: { (error) -> Void in
+      if error.code == 401 {
+        completion([], error) // TODO - Handle by reauthing?
+      } else {
+        completion([], error)
+      }
+    })
+  }
+  
+  private func fetch(cached: Bool, url: String, completion: (NSData?, NSError?) -> Void) {
+    // TODO
   }
 }
