@@ -10,6 +10,10 @@ import UIKit
 import DateTools
 import AFNetworking
 
+protocol ReplyToProtocol {
+  func replyTo(tweet: Tweet)
+}
+
 class TweetCell: UITableViewCell {
   private static let hashtagRegex = NSRegularExpression(pattern: "#\\w+", options: nil, error: nil)!
   private static let hashtagColor = UIColor(red: 102 / 255.0, green: 117 / 255.0, blue: 127 / 255.0, alpha: 1.0)
@@ -26,6 +30,7 @@ class TweetCell: UITableViewCell {
   @IBOutlet weak var retweetImage: UIImageView!
   @IBOutlet weak var favoriteImage: UIImageView!
   
+  var delegate: ReplyToProtocol?
   
   var tweet: Tweet? {
     didSet {
@@ -67,6 +72,9 @@ class TweetCell: UITableViewCell {
   }
   
   @IBAction func replyTouched(sender: AnyObject) {
+    if let delegate = self.delegate, tweet = tweet {
+      delegate.replyTo(tweet)
+    }
   }
   
   @IBAction func retweetTouched(sender: AnyObject) {

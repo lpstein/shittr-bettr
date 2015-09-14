@@ -16,6 +16,7 @@ class CreateTweetController: UIViewController, UITextViewDelegate {
   @IBOutlet weak var charCounter: UILabel!
   
   var delegate: AddTweetProtocol?
+  var replyTo: Tweet?
   
   // Used to adjust to keyboard size
   @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -34,6 +35,10 @@ class CreateTweetController: UIViewController, UITextViewDelegate {
     }
     tweetText.becomeFirstResponder()
     tweetText.delegate = self
+    
+    if let replyTo = replyTo {
+      tweetText.text = replyTo.handle + " "
+    }
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardChange:", name: nil, object: nil)
   }
@@ -63,7 +68,7 @@ class CreateTweetController: UIViewController, UITextViewDelegate {
       return
     }
     
-    TwitterClient.sharedInstance.createTweet(tweetText.text, reply: nil) { (tweet, error) -> Void in
+    TwitterClient.sharedInstance.createTweet(tweetText.text, reply: replyTo) { (tweet, error) -> Void in
       if let error = error {
         let alert = UIAlertView(title: "Failure", message: error.description, delegate: nil, cancelButtonTitle: "Well, shit")
         alert.show()

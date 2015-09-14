@@ -12,10 +12,12 @@ protocol AddTweetProtocol {
   func addTweet(tweet: Tweet)
 }
 
-class TweetListController: UITableViewController, AddTweetProtocol {
+class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProtocol {
   var tweets: [Tweet] = []
   var destinationTweet: Tweet? = nil
   var fetchingMoreTweets = false
+  
+  var replyingTo: Tweet?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,6 +39,11 @@ class TweetListController: UITableViewController, AddTweetProtocol {
   func addTweet(tweet: Tweet) {
     tweets.insert(tweet, atIndex: 0)
     self.tableView.reloadData()
+  }
+  
+  func replyTo(tweet: Tweet) {
+    replyingTo = tweet
+    performSegueWithIdentifier("com.shazam.segue.create", sender: self)
   }
   
   private func reload(cached: Bool = true) {
@@ -76,6 +83,7 @@ class TweetListController: UITableViewController, AddTweetProtocol {
     
     var cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.tweet", forIndexPath: indexPath) as! TweetCell
     cell.tweet = tweets[indexPath.row]
+    cell.delegate = self
     return cell
   }
   
@@ -106,6 +114,8 @@ class TweetListController: UITableViewController, AddTweetProtocol {
     }
     if let controller = segue.destinationViewController as? CreateTweetController {
       controller.delegate = self
+      controller.replyTo = self.replyingTo
+      self.replyingTo = nil
     }
   }
   

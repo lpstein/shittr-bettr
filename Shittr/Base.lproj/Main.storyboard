@@ -252,7 +252,7 @@
                     <navigationItem key="navigationItem" title="Shittr" id="0yM-p9-bEa">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="a5X-ST-W2T">
                             <connections>
-                                <segue destination="ULo-IQ-fCW" kind="push" id="ASE-cy-OJh"/>
+                                <segue destination="ULo-IQ-fCW" kind="push" identifier="com.shazam.segue.create" id="ASE-cy-OJh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
