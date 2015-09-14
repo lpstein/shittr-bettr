@@ -66,6 +66,23 @@ class TweetCell: UITableViewCell {
     avatarImage.clipsToBounds = true
   }
   
+  @IBAction func replyTouched(sender: AnyObject) {
+  }
+  
+  @IBAction func retweetTouched(sender: AnyObject) {
+    if let tweet = tweet {
+      TwitterClient.sharedInstance.retweet(tweet)
+      retweetImage.image = UIImage(named: "RetweetOn")
+    }
+  }
+  
+  @IBAction func favoriteTouched(sender: AnyObject) {
+    if let tweet = tweet {
+      TwitterClient.sharedInstance.favorite(tweet)
+      favoriteImage.image = UIImage(named: "FavoriteOn")
+    }
+  }
+  
   private func applyAttributes(text: NSMutableAttributedString, regex: NSRegularExpression, attrs: [NSObject : AnyObject]) {
     let matches = regex.matchesInString(text.string, options: nil, range: NSMakeRange(0, text.length)) as! [NSTextCheckingResult]
     for match in matches {

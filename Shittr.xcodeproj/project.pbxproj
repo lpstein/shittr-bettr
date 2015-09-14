@@ -94,14 +94,13 @@
 		383DA7381BA22A97002C3CBE /* Shittr */ = {
 			isa = PBXGroup;
 			children = (
+				383DA73B1BA22A97002C3CBE /* AppDelegate.swift */,
+				383DA7421BA22A97002C3CBE /* Images.xcassets */,
+				385459DC1BA399A000ABC9F3 /* XIBs */,
 				383DA7661BA25242002C3CBE /* Views */,
 				383DA75F1BA23A81002C3CBE /* Lib */,
 				383DA75E1BA23A79002C3CBE /* Models */,
 				383DA75B1BA22CD2002C3CBE /* Controllers */,
-				383DA73B1BA22A97002C3CBE /* AppDelegate.swift */,
-				383DA73F1BA22A97002C3CBE /* Main.storyboard */,
-				383DA7421BA22A97002C3CBE /* Images.xcassets */,
-				383DA7441BA22A97002C3CBE /* LaunchScreen.xib */,
 				383DA7391BA22A97002C3CBE /* Supporting Files */,
 			);
 			path = Shittr;
@@ -164,6 +163,15 @@
 				383DA7671BA25256002C3CBE /* TweetCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		385459DC1BA399A000ABC9F3 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				383DA73F1BA22A97002C3CBE /* Main.storyboard */,
+				383DA7441BA22A97002C3CBE /* LaunchScreen.xib */,
+			);
+			name = XIBs;
 			sourceTree = "<group>";
 		};
 		8C1E7BBA883EC5E0E9F710CB /* Pods */ = {

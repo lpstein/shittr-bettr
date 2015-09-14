@@ -75,6 +75,22 @@ class TwitterClient: NSObject {
     ], completion: completion)
   }
   
+  func retweet(tweet: Tweet) {
+    let params = Dictionary<String, AnyObject>()
+    client.post("https://api.twitter.com/1.1/statuses/retweet/\(tweet.id).json", parameters: params, success: nil) {(error) in
+      NSLog("Unable to retweet: \(error.description)")
+    }
+  }
+  
+  func favorite(tweet: Tweet) {
+    let params = [
+      "id": tweet.id
+    ]
+    client.post("https://api.twitter.com/1.1/favorites/create.json", parameters: params, success: nil) {(error) in
+      NSLog("Unable to favorite: \(error.description)")
+    }
+  }
+  
   private func fetchTweetsFromUrl(cached: Bool, url: String, params: Dictionary<String, AnyObject>? = nil, completion: ([Tweet], NSError?) -> Void) {
     var params = params
     if params == nil {
