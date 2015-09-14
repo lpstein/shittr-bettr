@@ -8,7 +8,11 @@
 
 import UIKit
 
-class TweetListController: UITableViewController {
+protocol AddTweetProtocol {
+  func addTweet(tweet: Tweet)
+}
+
+class TweetListController: UITableViewController, AddTweetProtocol {
   var tweets: [Tweet] = []
   var destinationTweet: Tweet? = nil
   var fetchingMoreTweets = false
@@ -28,6 +32,11 @@ class TweetListController: UITableViewController {
   
   func userDidRefresh(sender: AnyObject?) {
     reload(cached: false)
+  }
+  
+  func addTweet(tweet: Tweet) {
+    tweets.insert(tweet, atIndex: 0)
+    self.tableView.reloadData()
   }
   
   private func reload(cached: Bool = true) {
@@ -94,6 +103,9 @@ class TweetListController: UITableViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let controller = segue.destinationViewController as? TweetDetailController {
       controller.tweet = destinationTweet
+    }
+    if let controller = segue.destinationViewController as? CreateTweetController {
+      controller.delegate = self
     }
   }
   

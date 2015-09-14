@@ -22,10 +22,11 @@ class TwitterClient: NSObject {
   private static let consumerSecret = "6kt9jb6aAEAyayrQJ2fz748Q37mEdjXCkTnndV7QHojQTQOBzX"
   
   private let urlCache = NSURLCache(memoryCapacity: 0, diskCapacity: 1024 * 1024 * 2, diskPath: nil)
-  var client: OAuthSwiftClient!
+  private var client: OAuthSwiftClient!
   
   var oauthToken: String!
   var oauthTokenSecret: String!
+  var userInfo: JSON?
   
   override init() {
     super.init()
@@ -65,6 +66,15 @@ class TwitterClient: NSObject {
     }
   }
   
+  func fetchUserInfo() {
+    let params = Dictionary<String, AnyObject>()
+    client.get("https://api.twitter.com/1.1/account/verify_credentials.json", parameters: params, success: { (data, response) -> Void in
+      self.userInfo = JSON(data: data)
+    }) { (error) -> Void in
+      NSLog(error.description)
+    }
+  }
+  
   func fetchTweets(cached: Bool, completion: ([Tweet], NSError?) -> Void) {
     fetchTweetsFromUrl(cached, url: "https://api.twitter.com/1.1/statuses/home_timeline.json", completion: completion)
   }
@@ -88,6 +98,22 @@ class TwitterClient: NSObject {
     ]
     client.post("https://api.twitter.com/1.1/favorites/create.json", parameters: params, success: nil) {(error) in
       NSLog("Unable to favorite: \(error.description)")
+    }
+  }
+  
+  func createTweet(text: String, reply: Tweet? = nil, completion: (Tweet?, NSError?) -> Void) {
+    var params = [
+      "status": text
+    ]
+    
+    if let reply = reply {
+      params["in_reply_to_status_id"] = reply.id
+    }
+    
+    client.post("https://api.twitter.com/1.1/statuses/update.json", parameters: params, success: { (data, response) -> Void in
+      completion(Tweet(json: JSON(data: data)), nil)
+    }) { (error) -> Void in
+      completion(nil, error)
     }
   }
   
@@ -124,5 +150,7 @@ class TwitterClient: NSObject {
       accessToken: token,
       accessTokenSecret: secret
     )
+    
+    self.fetchUserInfo()
   }
 }
