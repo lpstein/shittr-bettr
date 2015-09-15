@@ -28,5 +28,11 @@ Time spent: `18`
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+#### Features
+
+![Video Walkthrough](cap4.gif)
+
+#### Auth
+
+![Auth Walkthrough](cap5.gif)
 

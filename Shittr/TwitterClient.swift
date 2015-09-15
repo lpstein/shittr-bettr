@@ -86,6 +86,7 @@ class TwitterClient: NSObject {
   }
   
   func retweet(tweet: Tweet) {
+    tweet.didRetweet = true
     let params = Dictionary<String, AnyObject>()
     client.post("https://api.twitter.com/1.1/statuses/retweet/\(tweet.id).json", parameters: params, success: nil) {(error) in
       NSLog("Unable to retweet: \(error.description)")
@@ -93,6 +94,7 @@ class TwitterClient: NSObject {
   }
   
   func favorite(tweet: Tweet) {
+    tweet.didFavorite = true
     let params = [
       "id": tweet.id
     ]

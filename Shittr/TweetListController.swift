@@ -32,6 +32,12 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
     reload()
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    tableView.reloadData()
+  }
+  
   func userDidRefresh(sender: AnyObject?) {
     reload(cached: false)
   }

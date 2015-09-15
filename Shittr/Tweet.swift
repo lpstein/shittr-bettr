@@ -20,8 +20,8 @@ class Tweet: NSObject {
   let avatarImage: NSURL
   let when: NSDate
   
-  let didFavorite: Bool
-  let didRetweet: Bool
+  var didFavorite: Bool
+  var didRetweet: Bool
   
   let retweetCount: Int
   let favoriteCount: Int
