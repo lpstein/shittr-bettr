@@ -51,11 +51,15 @@ class TweetDetailController: UIViewController {
       
       // Use the "On" version of images if this user has performed
       // actions on the tweet in question
-      if tweet.didRetweet || true {
-        // retweetImage.image = UIImage(named: "RetweetOn")
+      if tweet.didRetweet {
+        retweetImage.image = UIImage(named: "RetweetOn")
+      } else {
+        retweetImage.image = UIImage(named: "Retweet")
       }
       if tweet.didFavorite {
-        // favoriteImage.image = UIImage(named: "FavoriteOn")
+        favoriteImage.image = UIImage(named: "FavoriteOn")
+      } else {
+        favoriteImage.image = UIImage(named: "Favorite")
       }
       
       // Get funky with the tweet text itself
@@ -71,5 +75,28 @@ class TweetDetailController: UIViewController {
       
     }
 
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let controller = segue.destinationViewController as? CreateTweetController {
+      controller.replyTo = tweet
+      if let stack = navigationController?.viewControllers {
+        controller.delegate = stack[count(stack) - 2] as? AddTweetProtocol
+      }
+    }
+  }
+  
+  @IBAction func favoriteTouched(sender: AnyObject) {
+    favoriteImage.image = UIImage(named: "FavoriteOn")
+    if let tweet = tweet {
+      TwitterClient.sharedInstance.favorite(tweet)
+    }
+  }
+  
+  @IBAction func retweetTouched(sender: AnyObject) {
+    retweetImage.image = UIImage(named: "RetweetOn")
+    if let tweet = tweet {
+      TwitterClient.sharedInstance.retweet(tweet)
+    }
   }
 }

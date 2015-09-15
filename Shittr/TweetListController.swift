@@ -38,7 +38,8 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
   
   func addTweet(tweet: Tweet) {
     tweets.insert(tweet, atIndex: 0)
-    self.tableView.reloadData()
+    tableView.setContentOffset(CGPointMake(0, -tableView.contentInset.top), animated: true)
+    tableView.reloadData()
   }
   
   func replyTo(tweet: Tweet) {

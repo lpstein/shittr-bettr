@@ -45,9 +45,13 @@ class TweetCell: UITableViewCell {
         // actions on the tweet in question
         if tweet.didRetweet {
           retweetImage.image = UIImage(named: "RetweetOn")
+        } else {
+          retweetImage.image = UIImage(named: "Retweet")
         }
         if tweet.didFavorite {
           favoriteImage.image = UIImage(named: "FavoriteOn")
+        } else {
+          favoriteImage.image = UIImage(named: "Favorite")
         }
         
         // Get funky with the tweet text itself
