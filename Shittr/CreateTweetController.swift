@@ -51,7 +51,7 @@ class CreateTweetController: UIViewController, UITextViewDelegate {
   }
   
   func textViewDidChange(tweetText: UITextView) {
-    let chars = count(tweetText.text)
+    let chars = tweetText.text.characters.count
     
     charCounter.text = "\(140 - chars)"
     if chars > 140 {
@@ -62,7 +62,7 @@ class CreateTweetController: UIViewController, UITextViewDelegate {
   }
 
   @IBAction func createTweet(sender: AnyObject) {
-    if count(tweetText.text) > 140 {
+    if tweetText.text.characters.count > 140 {
       let alert = UIAlertView(title: "Whoa now", message: "Way too many letters in that tweet, dude.  Make it shorter.", delegate: nil, cancelButtonTitle: "Ugh, fine")
       alert.show()
       return

@@ -39,7 +39,7 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
   }
   
   func userDidRefresh(sender: AnyObject?) {
-    reload(cached: false)
+    reload(false)
   }
   
   func addTweet(tweet: Tweet) {
@@ -82,13 +82,13 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
       if tweets.count != 0 {
         getMoreTweets()
       }
-      let cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.spinner", forIndexPath: indexPath) as! UITableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.spinner", forIndexPath: indexPath) 
       let spinner = cell.contentView.subviews[0] as! UIActivityIndicatorView
       spinner.startAnimating()
       return cell
     }
     
-    var cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.tweet", forIndexPath: indexPath) as! TweetCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.tweet", forIndexPath: indexPath) as! TweetCell
     cell.tweet = tweets[indexPath.row]
     cell.delegate = self
     return cell

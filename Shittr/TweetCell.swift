@@ -15,9 +15,9 @@ protocol ReplyToProtocol {
 }
 
 class TweetCell: UITableViewCell {
-  private static let hashtagRegex = NSRegularExpression(pattern: "#\\w+", options: nil, error: nil)!
+  private static let hashtagRegex = try! NSRegularExpression(pattern: "#\\w+", options: [])
   private static let hashtagColor = UIColor(red: 102 / 255.0, green: 117 / 255.0, blue: 127 / 255.0, alpha: 1.0)
-  private static let mentionRegex = NSRegularExpression(pattern: "@\\w+", options: nil, error: nil)!
+  private static let mentionRegex = try! NSRegularExpression(pattern: "@\\w+", options: [])
   private static let mentionColor = UIColor(red: 85 / 255.0, green: 172 / 255.0, blue: 238 / 255.0, alpha: 1.0)
   
   @IBOutlet weak var whenLabel: UILabel!
@@ -95,8 +95,8 @@ class TweetCell: UITableViewCell {
     }
   }
   
-  private func applyAttributes(text: NSMutableAttributedString, regex: NSRegularExpression, attrs: [NSObject : AnyObject]) {
-    let matches = regex.matchesInString(text.string, options: nil, range: NSMakeRange(0, text.length)) as! [NSTextCheckingResult]
+  private func applyAttributes(text: NSMutableAttributedString, regex: NSRegularExpression, attrs: [String : AnyObject]?) {
+    let matches = regex.matchesInString(text.string, options: [], range: NSMakeRange(0, text.length)) 
     for match in matches {
       text.setAttributes(attrs, range: match.range)
     }

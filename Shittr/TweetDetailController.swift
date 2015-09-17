@@ -81,7 +81,7 @@ class TweetDetailController: UIViewController {
     if let controller = segue.destinationViewController as? CreateTweetController {
       controller.replyTo = tweet
       if let stack = navigationController?.viewControllers {
-        controller.delegate = stack[count(stack) - 2] as? AddTweetProtocol
+        controller.delegate = stack[stack.count - 2] as? AddTweetProtocol
       }
     }
   }
