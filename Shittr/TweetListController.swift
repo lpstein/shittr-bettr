@@ -38,12 +38,6 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
     tableView.reloadData()
   }
   
-  @IBAction func hamburgerTapped(sender: AnyObject) {
-    if let uberController = navigationController?.parentViewController as? UberController {
-      uberController.toggleDrawer()
-    }
-  }
-  
   func userDidRefresh(sender: AnyObject?) {
     reload(false)
   }

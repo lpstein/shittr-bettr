@@ -34,6 +34,12 @@ class UberController : UIViewController {
     if segue.identifier == "bootstrap" && primaryViewController == nil {
       primaryViewController = segue.destinationViewController
     }
+
+    // For any nav controller added, create a hamburger toggle button for the
+    // root controller.
+    if let vc = segue.destinationViewController as? UINavigationController {
+      vc.childViewControllers[0].navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "toggleDrawer")
+    }
   }
   
   override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {

@@ -254,11 +254,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Shittr" id="0yM-p9-bEa">
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="dLT-bf-bxL">
-                            <connections>
-                                <action selector="hamburgerTapped:" destination="Hel-0D-Szq" id="x1w-ag-3ss"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="a5X-ST-W2T">
                             <connections>
                                 <segue destination="ULo-IQ-fCW" kind="push" identifier="com.shazam.segue.create" id="ASE-cy-OJh"/>
@@ -756,7 +751,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7aa-Y5-h0S"/>
-        <segue reference="6Ug-b8-F4v"/>
+        <segue reference="6PJ-vB-gIf"/>
         <segue reference="ASE-cy-OJh"/>
     </inferredMetricsTieBreakers>
 </document>
