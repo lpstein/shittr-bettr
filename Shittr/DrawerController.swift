@@ -17,7 +17,7 @@ class DrawerController: UITableViewController {
     "Account": [
       "Profile": "com.shazam.segue.embed.profile",
       "Settings": "com.shazam.segue.embed.settings",
-      "Logout": "com.shazam.segue.embed.logout"
+      "Logout": "logout"
     ]
   ]
   

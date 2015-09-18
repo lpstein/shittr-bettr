@@ -39,8 +39,8 @@ class UberController : UIViewController {
   override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {
     // Blarghhhhh
     if identifier == "logout" {
-      // TODO
-      
+      TwitterClient.sharedInstance.logout()
+      dismissViewControllerAnimated(true, completion: nil)
     } else {
       super.performSegueWithIdentifier(identifier, sender: sender)
     }

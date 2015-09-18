@@ -31,7 +31,7 @@ class TwitterClient: NSObject {
   override init() {
     super.init()
     
-    let (creds, error) = Locksmith.loadDataForUserAccount("twitter")
+    let (creds, _) = Locksmith.loadDataForUserAccount("twitter")
     
     if let creds = creds, token = creds[OAuth.OAuthToken] as? String, secret = creds[OAuth.OAuthTokenSecret] as? String {
       self.createClient(token, secret: secret)
@@ -117,6 +117,11 @@ class TwitterClient: NSObject {
     }) { (error) -> Void in
       completion(nil, error)
     }
+  }
+  
+  func logout() {
+    Locksmith.deleteDataForUserAccount("twitter")
+    client = nil
   }
   
   private func fetchTweetsFromUrl(cached: Bool, url: String, params: Dictionary<String, AnyObject>? = nil, completion: ([Tweet], NSError?) -> Void) {
