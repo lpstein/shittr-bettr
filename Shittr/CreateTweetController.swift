@@ -27,17 +27,15 @@ class CreateTweetController: UIViewController, UITextViewDelegate {
     profileImage.layer.cornerRadius = 4.0
     profileImage.clipsToBounds = true
     
-    let info = TwitterClient.sharedInstance.userInfo
-    nameLabel.text = info?["name"].string ?? ""
-    handleLabel.text = "@" + (info?["screen_name"].string ?? "")
-    if let urlStr = info?["profile_image_url_https"].string, url = NSURL(string: urlStr) {
-      profileImage.setImageWithURL(url)
-    }
+    let user = TwitterClient.sharedInstance.user
+    nameLabel.text = user.name
+    handleLabel.text = user.handle
+    profileImage.setImageWithURL(user.profileImage)
     tweetText.becomeFirstResponder()
     tweetText.delegate = self
     
     if let replyTo = replyTo {
-      tweetText.text = replyTo.handle + " "
+      tweetText.text = replyTo.user.handle + " "
     }
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardChange:", name: nil, object: nil)

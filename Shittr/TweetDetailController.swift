@@ -39,13 +39,13 @@ class TweetDetailController: UIViewController {
     avatarImage.clipsToBounds = true
     
     if let tweet = tweet {
-      navigationItem.title = "Tweet by \(tweet.fullname)"
+      navigationItem.title = "Tweet by \(tweet.user.name)"
       
       // Basic stuff
-      handleLabel.text = tweet.handle
-      fullnameLabel.text = tweet.fullname
+      handleLabel.text = tweet.user.handle
+      fullnameLabel.text = tweet.user.name
       whenLabel.text = TweetDetailController.formatter.stringFromDate(tweet.when)
-      avatarImage.setImageWithURL(tweet.avatarImage)
+      avatarImage.setImageWithURL(tweet.user.profileImage)
       favoriteCountLabel.text = "\(tweet.favoriteCount)"
       retweetCountLabel.text = "\(tweet.retweetCount)"
       
@@ -83,6 +83,10 @@ class TweetDetailController: UIViewController {
       if let stack = navigationController?.viewControllers {
         controller.delegate = stack[stack.count - 2] as? AddTweetProtocol
       }
+    }
+    
+    if let vc = segue.destinationViewController as? ProfileController {
+      vc.user = tweet!.user
     }
   }
   

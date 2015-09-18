@@ -10,8 +10,9 @@ import UIKit
 import DateTools
 import AFNetworking
 
-protocol ReplyToProtocol {
+protocol TweetListProtocol {
   func replyTo(tweet: Tweet)
+  func goToProfile(user: User)
 }
 
 class TweetCell: UITableViewCell {
@@ -30,16 +31,16 @@ class TweetCell: UITableViewCell {
   @IBOutlet weak var retweetImage: UIImageView!
   @IBOutlet weak var favoriteImage: UIImageView!
   
-  var delegate: ReplyToProtocol?
+  var delegate: TweetListProtocol?
   
   var tweet: Tweet? {
     didSet {
       if let tweet = tweet {
         // Basic stuff
-        handleLabel.text = tweet.handle
-        fullnameLabel.text = tweet.fullname
+        handleLabel.text = tweet.user.handle
+        fullnameLabel.text = tweet.user.name
         whenLabel.text = tweet.when.shortTimeAgoSinceNow()
-        avatarImage.setImageWithURL(tweet.avatarImage)
+        avatarImage.setImageWithURL(tweet.user.profileImage)
       
         // Use the "On" version of images if this user has performed
         // actions on the tweet in question
@@ -73,6 +74,12 @@ class TweetCell: UITableViewCell {
     
     avatarImage.layer.cornerRadius = 4.0
     avatarImage.clipsToBounds = true
+  }
+  
+  @IBAction func profileImageTouched(sender: AnyObject) {
+    if let delegate = self.delegate, tweet = tweet {
+      delegate.goToProfile(tweet.user)
+    }
   }
   
   @IBAction func replyTouched(sender: AnyObject) {

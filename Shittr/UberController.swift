@@ -14,6 +14,7 @@ class UberController : UIViewController {
   
   var drawerOpen = false
   var startLocation: CGPoint?
+  var startX: CGFloat = 0
   var startMs: Double = 0
   var dx: CGFloat = 0
 
@@ -39,6 +40,11 @@ class UberController : UIViewController {
     // root controller.
     if let vc = segue.destinationViewController as? UINavigationController {
       vc.childViewControllers[0].navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "toggleDrawer")
+    
+      // When going to the profile controller, use the current user
+      if let vc = vc.childViewControllers[0] as? ProfileController {
+        vc.user = TwitterClient.sharedInstance.user
+      }
     }
   }
   
@@ -55,6 +61,7 @@ class UberController : UIViewController {
   @IBAction func swiping(sender: UIPanGestureRecognizer) {
     if sender.state == .Began {
       startLocation = sender.locationOfTouch(0, inView: nil)
+      startX = primaryView.frame.origin.x
       startMs = NSDate().timeIntervalSince1970
     } else if sender.state == .Ended {
       startLocation = nil
@@ -71,9 +78,8 @@ class UberController : UIViewController {
     } else {
       if let startLocation = startLocation {
         dx = sender.locationOfTouch(0, inView: nil).x - startLocation.x
-        dx = min(dx, primaryView.frame.width)
-        dx = max(dx, 0)
-        primaryView.transform = CGAffineTransformMakeTranslation(dx, 0)
+        let x = max(0, min(dx, primaryView.frame.width) + startX)
+        primaryView.transform = CGAffineTransformMakeTranslation(x, 0)
       }
     }
   }

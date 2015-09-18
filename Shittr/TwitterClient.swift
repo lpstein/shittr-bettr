@@ -31,7 +31,7 @@ class TwitterClient: NSObject {
   
   var oauthToken: String!
   var oauthTokenSecret: String!
-  var userInfo: JSON?
+  var user: User!
   
   override init() {
     super.init()
@@ -74,7 +74,7 @@ class TwitterClient: NSObject {
   func fetchUserInfo() {
     let params = Dictionary<String, AnyObject>()
     client.get("https://api.twitter.com/1.1/account/verify_credentials.json", parameters: params, success: { (data, response) -> Void in
-      self.userInfo = JSON(data: data)
+      self.user = User(json: JSON(data: data))
     }) { (error) -> Void in
       NSLog(error.description)
     }

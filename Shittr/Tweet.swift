@@ -15,9 +15,7 @@ class Tweet: NSObject {
                                                                   // See: http://waracle.net/iphone-nsdateformatter-date-formatting-table/
   let id: String
   let text: String
-  let fullname: String
-  let handle: String
-  let avatarImage: NSURL
+  let user: User
   let when: NSDate
   
   var didFavorite: Bool
@@ -25,6 +23,8 @@ class Tweet: NSObject {
   
   let retweetCount: Int
   let favoriteCount: Int
+  
+  
   
   init(json: JSON) {
     // Kind of a crappy static initialization, but it works and is thread
@@ -35,8 +35,7 @@ class Tweet: NSObject {
     
     id = json["id_str"].string!
     text = json["text"].string!
-    fullname = json["user"]["name"].string!
-    handle = "@" + json["user"]["screen_name"].string!
+    user = User(json: json["user"])
     when = Tweet.formatter.dateFromString(json["created_at"].string!)!
     
     didFavorite = json["favorited"].bool!
@@ -44,9 +43,5 @@ class Tweet: NSObject {
     
     retweetCount = json["retweet_count"].int!
     favoriteCount = json["favorite_count"].int!
-    
-    var avatarUrl = json["user"]["profile_image_url_https"].string!
-    avatarUrl = avatarUrl.stringByReplacingOccurrencesOfString("normal\\.png$", withString: "bigger.png", options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
-    avatarImage = NSURL(string: avatarUrl)!
   }
 }
