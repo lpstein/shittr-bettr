@@ -25,6 +25,7 @@
 		38E4F3BA1BAB853300CAC603 /* ReplaceEmbedSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3B91BAB853300CAC603 /* ReplaceEmbedSegue.swift */; settings = {ASSET_TAGS = (); }; };
 		38E4F3BC1BAC9A9100CAC603 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3BB1BAC9A9100CAC603 /* HomeController.swift */; settings = {ASSET_TAGS = (); }; };
 		38E4F3BE1BAC9C0200CAC603 /* MentionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3BD1BAC9C0200CAC603 /* MentionsController.swift */; settings = {ASSET_TAGS = (); }; };
+		38E4F3C01BACA51400CAC603 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3BF1BACA51400CAC603 /* ProfileController.swift */; settings = {ASSET_TAGS = (); }; };
 		8F9D31D4354D46E44324E819 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE88D46BF60E19F810D3C2F1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		38E4F3B91BAB853300CAC603 /* ReplaceEmbedSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceEmbedSegue.swift; sourceTree = "<group>"; };
 		38E4F3BB1BAC9A9100CAC603 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		38E4F3BD1BAC9C0200CAC603 /* MentionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsController.swift; sourceTree = "<group>"; };
+		38E4F3BF1BACA51400CAC603 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		BE88D46BF60E19F810D3C2F1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F40C91B3F8F65606768257 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 				38E4F3B51BAB713200CAC603 /* DrawerController.swift */,
 				38E4F3BB1BAC9A9100CAC603 /* HomeController.swift */,
 				38E4F3BD1BAC9C0200CAC603 /* MentionsController.swift */,
+				38E4F3BF1BACA51400CAC603 /* ProfileController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				38E4F3BE1BAC9C0200CAC603 /* MentionsController.swift in Sources */,
 				383DA7631BA24532002C3CBE /* TweetListController.swift in Sources */,
 				386916471BA3621D00740E5D /* TweetDetailController.swift in Sources */,
+				38E4F3C01BACA51400CAC603 /* ProfileController.swift in Sources */,
 				383DA7681BA25256002C3CBE /* TweetCell.swift in Sources */,
 				38E4F3B41BAB5F2000CAC603 /* UberController.swift in Sources */,
 				38E4F3BC1BAC9A9100CAC603 /* HomeController.swift in Sources */,

@@ -24,6 +24,8 @@ class DrawerController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    tableView.contentInset = UIEdgeInsetsMake(topLayoutGuide.length, 0.0, 0.0, 0.0);
+    
     tableView.delegate = self
     tableView.dataSource = self
     tableView.backgroundColor = UIColor.blackColor()
