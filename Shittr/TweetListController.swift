@@ -13,6 +13,8 @@ protocol AddTweetProtocol {
 }
 
 class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProtocol {
+  var source = TweetTimelineSource.Home
+  
   var tweets: [Tweet] = []
   var destinationTweet: Tweet? = nil
   var fetchingMoreTweets = false
@@ -21,7 +23,7 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+        
     refreshControl = UIRefreshControl()
     refreshControl?.addTarget(self, action: "userDidRefresh:", forControlEvents: UIControlEvents.ValueChanged)
     tableView.insertSubview(refreshControl!, atIndex: 0)
@@ -54,7 +56,7 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
   }
   
   private func reload(cached: Bool = true) {
-    TwitterClient.sharedInstance.fetchTweets(cached, completion: { (tweets, error) -> Void in
+    TwitterClient.sharedInstance.fetchTweets(cached, source: source, completion: { (tweets, error) -> Void in
       // Clear refreshing state if it's active
       if let refresh = self.refreshControl {
         if refresh.refreshing {
@@ -130,7 +132,7 @@ class TweetListController: UITableViewController, AddTweetProtocol, ReplyToProto
     if !fetchingMoreTweets {
       
       fetchingMoreTweets = true
-      TwitterClient.sharedInstance.fetchTweets(true, afterTweet: self.tweets.last!, completion: { (moreTweets, error) -> Void in
+      TwitterClient.sharedInstance.fetchTweets(true, source: source, afterTweet: self.tweets.last!, completion: { (moreTweets, error) -> Void in
         
         self.fetchingMoreTweets = false
         

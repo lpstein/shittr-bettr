@@ -54,7 +54,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.shazam.cell.tweet" rowHeight="116" id="GCZ-Ag-YZ4" customClass="TweetCell" customModule="Shittr" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="600" height="116"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GCZ-Ag-YZ4" id="7qd-UZ-52b">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="115.5"/>
@@ -226,7 +226,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.shazam.cell.spinner" rowHeight="36" id="VQn-eg-0cg">
-                                <rect key="frame" x="0.0" y="182" width="600" height="36"/>
+                                <rect key="frame" x="0.0" y="202" width="600" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VQn-eg-0cg" id="BDr-U8-urv">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="35.5"/>
@@ -266,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hja-N5-05b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="627"/>
+            <point key="canvasLocation" x="1090" y="973"/>
         </scene>
         <!--Create a Tweet-->
         <scene sceneID="ziG-FG-9ls">
@@ -347,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSo-52-6K2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1853" y="264"/>
+            <point key="canvasLocation" x="1499" y="1722"/>
         </scene>
         <!--Tweet Detail Controller-->
         <scene sceneID="9Ju-BP-zgX">
@@ -574,7 +574,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAV-DW-Yo6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1853" y="990"/>
+            <point key="canvasLocation" x="1945" y="973"/>
         </scene>
         <!--Uber Controller-->
         <scene sceneID="q9J-jF-kAw">
@@ -684,7 +684,7 @@
         <!--Home-->
         <scene sceneID="TiN-ij-hxh">
             <objects>
-                <navigationController id="lF2-C6-qVz" userLabel="Home" sceneMemberID="viewController">
+                <navigationController id="lF2-C6-qVz" userLabel="Home" customClass="HomeController" customModule="Shittr" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qou-8f-VND">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -697,46 +697,16 @@
             </objects>
             <point key="canvasLocation" x="350" y="627"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="jsT-YI-hR7">
-            <objects>
-                <tableViewController id="24e-0C-7zX" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vlo-x7-kgM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pfN-Xk-bva">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfN-Xk-bva" id="wvY-PS-kvT">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="24e-0C-7zX" id="1Ya-pi-bUg"/>
-                            <outlet property="delegate" destination="24e-0C-7zX" id="cBj-9G-NZp"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="DFA-Fj-U9r"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J8n-oA-dXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1085" y="1376"/>
-        </scene>
         <!--Mentions-->
         <scene sceneID="0zO-MF-dVM">
             <objects>
-                <navigationController id="GHE-Bs-mSK" userLabel="Mentions" sceneMemberID="viewController">
+                <navigationController id="GHE-Bs-mSK" userLabel="Mentions" customClass="MentionsController" customModule="Shittr" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="S2l-lg-g4e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="24e-0C-7zX" kind="relationship" relationship="rootViewController" id="V9l-tT-25h"/>
+                        <segue destination="Hel-0D-Szq" kind="relationship" relationship="rootViewController" id="jRJ-ab-jIa"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15c-cG-kDn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -750,8 +720,9 @@
         <image name="Retweet" width="19" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7aa-Y5-h0S"/>
+        <segue reference="jRJ-ab-jIa"/>
         <segue reference="6PJ-vB-gIf"/>
+        <segue reference="7aa-Y5-h0S"/>
         <segue reference="ASE-cy-OJh"/>
     </inferredMetricsTieBreakers>
 </document>

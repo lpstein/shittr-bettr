@@ -16,6 +16,11 @@ struct OAuth {
   static let OAuthTokenSecret = "oauth_token_secret"
 }
 
+enum TweetTimelineSource: String {
+  case Home = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+  case Mentions = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
+}
+
 class TwitterClient: NSObject {
   static let sharedInstance = TwitterClient()
   private static let consumerKey = "idD00emRQLmntEpTqYveTJNP2"
@@ -75,14 +80,19 @@ class TwitterClient: NSObject {
     }
   }
   
-  func fetchTweets(cached: Bool, completion: ([Tweet], NSError?) -> Void) {
-    fetchTweetsFromUrl(cached, url: "https://api.twitter.com/1.1/statuses/home_timeline.json", completion: completion)
+  func fetchTweets(cached: Bool, source: TweetTimelineSource, completion: ([Tweet], NSError?) -> Void) {
+    fetchTweetsFromUrl(cached, url: source.rawValue, completion: completion)
   }
   
-  func fetchTweets(cached: Bool, afterTweet tweet: Tweet, completion: ([Tweet], NSError?) -> Void) {
-    fetchTweetsFromUrl(cached, url: "https://api.twitter.com/1.1/statuses/home_timeline.json", params: [
+  func fetchTweets(cached: Bool, source: TweetTimelineSource, afterTweet tweet: Tweet, completion: ([Tweet], NSError?) -> Void) {
+    fetchTweetsFromUrl(cached, url: source.rawValue, params: [
       "max_id" : tweet.id
-    ], completion: completion)
+    ], completion: { (var tweets, error) in
+      if tweets.count > 0 {
+        tweets.removeAtIndex(0)
+      }
+      completion(tweets, error)
+    })
   }
   
   func retweet(tweet: Tweet) {
