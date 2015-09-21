@@ -16,10 +16,6 @@ protocol TweetListProtocol {
 }
 
 class TweetCell: UITableViewCell {
-  private static let hashtagRegex = try! NSRegularExpression(pattern: "#\\w+", options: [])
-  private static let hashtagColor = UIColor(red: 102 / 255.0, green: 117 / 255.0, blue: 127 / 255.0, alpha: 1.0)
-  private static let mentionRegex = try! NSRegularExpression(pattern: "@\\w+", options: [])
-  private static let mentionColor = UIColor(red: 85 / 255.0, green: 172 / 255.0, blue: 238 / 255.0, alpha: 1.0)
   
   @IBOutlet weak var whenLabel: UILabel!
   @IBOutlet weak var handleLabel: UILabel!
@@ -55,16 +51,7 @@ class TweetCell: UITableViewCell {
           favoriteImage.image = UIImage(named: "Favorite")
         }
         
-        // Get funky with the tweet text itself
-        let text = NSMutableAttributedString(string: tweet.text)
-        applyAttributes(text, regex: TweetCell.hashtagRegex, attrs: [
-          NSForegroundColorAttributeName : TweetCell.hashtagColor
-        ])
-        applyAttributes(text, regex: TweetCell.mentionRegex, attrs: [
-          NSForegroundColorAttributeName : TweetCell.mentionColor
-        ])
-        
-        tweetTextLabel.attributedText = text
+        tweetTextLabel.attributedText = TwitterText.highlightTweet(tweet.text)
       }
     }
   }
@@ -102,10 +89,5 @@ class TweetCell: UITableViewCell {
     }
   }
   
-  private func applyAttributes(text: NSMutableAttributedString, regex: NSRegularExpression, attrs: [String : AnyObject]?) {
-    let matches = regex.matchesInString(text.string, options: [], range: NSMakeRange(0, text.length)) 
-    for match in matches {
-      text.setAttributes(attrs, range: match.range)
-    }
-  }
+  
 }

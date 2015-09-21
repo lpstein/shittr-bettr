@@ -48,6 +48,7 @@ class TweetDetailController: UIViewController {
       avatarImage.setImageWithURL(tweet.user.profileImage)
       favoriteCountLabel.text = "\(tweet.favoriteCount)"
       retweetCountLabel.text = "\(tweet.retweetCount)"
+      tweetTextLabel.attributedText = TwitterText.highlightTweet(tweet.text)
       
       // Use the "On" version of images if this user has performed
       // actions on the tweet in question
@@ -61,20 +62,7 @@ class TweetDetailController: UIViewController {
       } else {
         favoriteImage.image = UIImage(named: "Favorite")
       }
-      
-      // Get funky with the tweet text itself
-      tweetTextLabel.text = tweet.text
-      //        let text = NSMutableAttributedString(string: tweet.text)
-      //        applyAttributes(text, regex: TweetCell.hashtagRegex, attrs: [
-      //          NSForegroundColorAttributeName : TweetCell.hashtagColor
-      //        ])
-      //        applyAttributes(text, regex: TweetCell.mentionRegex, attrs: [
-      //          NSForegroundColorAttributeName : TweetCell.mentionColor
-      //        ])
-      //        tweetTextLabel.attributedText = text
-      
     }
-
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
