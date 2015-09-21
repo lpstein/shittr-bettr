@@ -13,7 +13,18 @@ protocol AddTweetProtocol {
 }
 
 class TweetListController: UITableViewController, AddTweetProtocol, TweetListProtocol {
+  @IBOutlet weak var profileHeaderView: UIView!
+  @IBOutlet weak var blurEffect: UIVisualEffectView!
+  @IBOutlet weak var profileImage: UIImageView!
+  @IBOutlet weak var coverImage: UIImageView!
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var tweetCount: UILabel!
+  @IBOutlet weak var followingCount: UILabel!
+  @IBOutlet weak var followersCount: UILabel!
+  
+  
   var source = TweetTimelineSource.Home
+  var user: User?
   
   var tweets: [Tweet] = []
   var destinationTweet: Tweet? = nil
@@ -24,10 +35,34 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
   
   override func viewDidLoad() {
     super.viewDidLoad()
-        
-    refreshControl = UIRefreshControl()
-    refreshControl?.addTarget(self, action: "userDidRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-    tableView.insertSubview(refreshControl!, atIndex: 0)
+    
+    if let user = user {
+      navigationItem.title = user.handle
+      nameLabel.text = user.name
+      
+      profileImage.setImageWithURL(user.profileImage)
+      profileImage.clipsToBounds = true
+      profileImage.layer.cornerRadius = 4
+
+      tweetCount.text = String(user.tweetCount)
+      followingCount.text = String(user.followingCount)
+      followersCount.text = String(user.followersCount)
+      
+      coverImage.backgroundColor = user.linkColor
+      if user.useCoverImage {
+        coverImage.alpha = 0
+        coverImage.setImageWithURL(user.coverImage)
+        UIView.animateWithDuration(0.6, animations: { () -> Void in
+          self.coverImage.alpha = 1
+        })
+      }
+    } else {
+      tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 1))
+    
+      refreshControl = UIRefreshControl()
+      refreshControl?.addTarget(self, action: "userDidRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+      tableView.insertSubview(refreshControl!, atIndex: 0)
+    }
     
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
@@ -38,7 +73,22 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
+    if let _ = user {
+      blurEffect.alpha = 0.0
+    }
+    
     tableView.reloadData()
+  }
+  
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
+    if let blurEffect = blurEffect {
+      let offset = scrollView.contentOffset.y
+      let navHeight = navigationController?.navigationBar.frame.size.height ?? 0
+      let y = offset + navHeight
+      
+      blurEffect.alpha = max(0, min(1, y * 2 / tableView.tableHeaderView!.bounds.height))
+      NSLog("Alpha: \(blurEffect.alpha)")
+    }
   }
   
   func userDidRefresh(sender: AnyObject?) {
@@ -58,11 +108,11 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
   
   func goToProfile(user: User) {
     profileTo = user
-    performSegueWithIdentifier("com.shazam.segue.profile", sender: self)
+    // performSegueWithIdentifier("com.shazam.segue.profile", sender: self)
   }
   
   private func reload(cached: Bool = true) {
-    TwitterClient.sharedInstance.fetchTweets(cached, source: source, completion: { (tweets, error) -> Void in
+    let completion: ([Tweet], NSError?) -> Void = { (tweets, error) -> Void in
       // Clear refreshing state if it's active
       if let refresh = self.refreshControl {
         if refresh.refreshing {
@@ -78,7 +128,13 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
       // Trigger a data update
       self.tweets = tweets
       self.tableView.reloadData()
-    })
+    }
+    
+    if source == .User {
+      TwitterClient.sharedInstance.fetchTweets(false, source: source, forUser: user!, completion: completion)
+    } else {
+      TwitterClient.sharedInstance.fetchTweets(false, source: source, completion: completion)
+    }
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -132,13 +188,14 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
       controller.replyTo = self.replyingTo
       self.replyingTo = nil
     }
-    if let vc = segue.destinationViewController as? ProfileController, profileTo = profileTo {
+    if let vc = segue.destinationViewController as? TweetListController, profileTo = profileTo {
       vc.user = profileTo
+      vc.source = .User
     }
   }
   
   private func getMoreTweets() {
-    if !fetchingMoreTweets {
+    if !fetchingMoreTweets && source != .User {
       
       fetchingMoreTweets = true
       TwitterClient.sharedInstance.fetchTweets(true, source: source, afterTweet: self.tweets.last!, completion: { (moreTweets, error) -> Void in

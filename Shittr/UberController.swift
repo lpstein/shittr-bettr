@@ -42,8 +42,11 @@ class UberController : UIViewController {
       vc.childViewControllers[0].navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "toggleDrawer")
     
       // When going to the profile controller, use the current user
-      if let vc = vc.childViewControllers[0] as? ProfileController {
-        vc.user = TwitterClient.sharedInstance.user
+      if segue.identifier == "com.shazam.segue.embed.profile" {
+        if let vc = vc.childViewControllers[0] as? TweetListController {
+          vc.user = TwitterClient.sharedInstance.user
+          vc.source = .User
+        }
       }
     }
   }

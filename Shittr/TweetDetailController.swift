@@ -73,7 +73,7 @@ class TweetDetailController: UIViewController {
       }
     }
     
-    if let vc = segue.destinationViewController as? ProfileController {
+    if let vc = segue.destinationViewController as? TweetListController {
       vc.user = tweet!.user
     }
   }

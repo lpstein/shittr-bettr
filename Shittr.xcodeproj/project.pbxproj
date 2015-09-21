@@ -25,7 +25,6 @@
 		38E4F3BA1BAB853300CAC603 /* ReplaceEmbedSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3B91BAB853300CAC603 /* ReplaceEmbedSegue.swift */; settings = {ASSET_TAGS = (); }; };
 		38E4F3BC1BAC9A9100CAC603 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3BB1BAC9A9100CAC603 /* HomeController.swift */; settings = {ASSET_TAGS = (); }; };
 		38E4F3BE1BAC9C0200CAC603 /* MentionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3BD1BAC9C0200CAC603 /* MentionsController.swift */; settings = {ASSET_TAGS = (); }; };
-		38E4F3C01BACA51400CAC603 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3BF1BACA51400CAC603 /* ProfileController.swift */; settings = {ASSET_TAGS = (); }; };
 		38E4F3C21BACB13400CAC603 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3C11BACB13400CAC603 /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		38E4F3C41BACB87800CAC603 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3C31BACB87800CAC603 /* ColorExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		38E4F3C61BB07DA700CAC603 /* TwitterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4F3C51BB07DA700CAC603 /* TwitterText.swift */; settings = {ASSET_TAGS = (); }; };
@@ -66,7 +65,6 @@
 		38E4F3B91BAB853300CAC603 /* ReplaceEmbedSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceEmbedSegue.swift; sourceTree = "<group>"; };
 		38E4F3BB1BAC9A9100CAC603 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		38E4F3BD1BAC9C0200CAC603 /* MentionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsController.swift; sourceTree = "<group>"; };
-		38E4F3BF1BACA51400CAC603 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		38E4F3C11BACB13400CAC603 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		38E4F3C31BACB87800CAC603 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		38E4F3C51BB07DA700CAC603 /* TwitterText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterText.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				38E4F3B51BAB713200CAC603 /* DrawerController.swift */,
 				38E4F3BB1BAC9A9100CAC603 /* HomeController.swift */,
 				38E4F3BD1BAC9C0200CAC603 /* MentionsController.swift */,
-				38E4F3BF1BACA51400CAC603 /* ProfileController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -384,7 +381,6 @@
 				383DA7631BA24532002C3CBE /* TweetListController.swift in Sources */,
 				38E4F3C21BACB13400CAC603 /* User.swift in Sources */,
 				386916471BA3621D00740E5D /* TweetDetailController.swift in Sources */,
-				38E4F3C01BACA51400CAC603 /* ProfileController.swift in Sources */,
 				383DA7681BA25256002C3CBE /* TweetCell.swift in Sources */,
 				38E4F3B41BAB5F2000CAC603 /* UberController.swift in Sources */,
 				38E4F3BC1BAC9A9100CAC603 /* HomeController.swift in Sources */,
@@ -473,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -511,7 +507,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

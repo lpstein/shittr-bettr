@@ -19,6 +19,7 @@ struct OAuth {
 enum TweetTimelineSource: String {
   case Home = "https://api.twitter.com/1.1/statuses/home_timeline.json"
   case Mentions = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
+  case User = "https://api.twitter.com/1.1/statuses/user_timeline.json"
 }
 
 class TwitterClient: NSObject {
@@ -93,6 +94,12 @@ class TwitterClient: NSObject {
       }
       completion(tweets, error)
     })
+  }
+  
+  func fetchTweets(cached: Bool, source: TweetTimelineSource, forUser user: User, completion: ([Tweet], NSError?) -> Void) {
+    fetchTweetsFromUrl(cached, url: source.rawValue, params: [
+      "user_id": user
+    ], completion: completion)
   }
   
   func retweet(tweet: Tweet) {
