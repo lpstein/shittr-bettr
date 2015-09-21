@@ -98,7 +98,7 @@ class TwitterClient: NSObject {
   
   func fetchTweets(cached: Bool, source: TweetTimelineSource, forUser user: User, completion: ([Tweet], NSError?) -> Void) {
     fetchTweetsFromUrl(cached, url: source.rawValue, params: [
-      "user_id": user
+      "user_id": user.id
     ], completion: completion)
   }
   

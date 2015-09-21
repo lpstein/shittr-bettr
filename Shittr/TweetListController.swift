@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 protocol AddTweetProtocol {
   func addTweet(tweet: Tweet)
@@ -86,7 +87,7 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
       let navHeight = navigationController?.navigationBar.frame.size.height ?? 0
       let y = offset + navHeight
       
-      blurEffect.alpha = max(0, min(1, y * 2 / tableView.tableHeaderView!.bounds.height))
+      blurEffect.alpha = max(0, min(1, y * 3 / tableView.tableHeaderView!.bounds.height))
       NSLog("Alpha: \(blurEffect.alpha)")
     }
   }
