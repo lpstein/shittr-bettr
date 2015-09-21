@@ -28,8 +28,9 @@ class DrawerController: UITableViewController {
     
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.backgroundColor = UIColor.blackColor()
+    tableView.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
     tableView.reloadData()
+    tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0); // Hack alert!
   }
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -43,7 +44,6 @@ class DrawerController: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("com.shazam.cell.nav", forIndexPath: indexPath) as! LinkCell
-    
     let (name, _) = infoForCell(indexPath)
     cell.name = name
     
@@ -55,8 +55,18 @@ class DrawerController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
     let (_, segue) = infoForCell(indexPath)
     parentViewController?.performSegueWithIdentifier(segue, sender: self)
+  }
+  
+  override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    if let view = view as? UITableViewHeaderFooterView {
+      view.backgroundColor = UIColor.clearColor()
+      view.textLabel?.textColor = UIColor.whiteColor()
+      view.contentView.backgroundColor = UIColor.clearColor()
+    }
   }
   
   private func infoForCell(indexPath: NSIndexPath) -> (String, String) {

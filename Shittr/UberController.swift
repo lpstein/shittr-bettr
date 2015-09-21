@@ -39,7 +39,8 @@ class UberController : UIViewController {
     // For any nav controller added, create a hamburger toggle button for the
     // root controller.
     if let vc = segue.destinationViewController as? UINavigationController {
-      vc.childViewControllers[0].navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "toggleDrawer")
+      let 🍔 = UIBarButtonItem(title: "☰", style: .Plain, target: self, action: "toggleDrawer")
+      vc.childViewControllers[0].navigationItem.leftBarButtonItem = 🍔
     
       // When going to the profile controller, use the current user
       if segue.identifier == "com.shazam.segue.embed.profile" {
