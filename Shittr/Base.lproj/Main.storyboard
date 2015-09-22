@@ -85,7 +85,7 @@
                                             <rect key="frame" x="207" y="0.0" width="187" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="444" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6V-wY-icD">
-                                                    <rect key="frame" x="10" y="12" width="167" height="15"/>
+                                                    <rect key="frame" x="10" y="12" width="167" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -144,12 +144,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 </imageView>
                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k51-r2-HCQ" userLabel="Funk View">
-                                    <rect key="frame" x="212" y="97" width="176" height="104"/>
+                                    <rect key="frame" x="209" y="87" width="184" height="125"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GJV-eW-Xpy">
-                                        <rect key="frame" x="0.0" y="0.0" width="176" height="104"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="184" height="125"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </view>
-                                    <blurEffect style="light"/>
+                                    <blurEffect style="dark"/>
                                 </visualEffectView>
                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eok-v3-gNg">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
@@ -160,9 +160,9 @@
                                     <blurEffect style="light"/>
                                 </visualEffectView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foobar McFoobarson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEE-f1-vNI">
-                                    <rect key="frame" x="218" y="175" width="164" height="21"/>
+                                    <rect key="frame" x="219" y="175" width="164" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caj-AF-4YW">
@@ -180,14 +180,14 @@
                                 <constraint firstItem="PGh-cK-FMC" firstAttribute="top" secondItem="fiB-3F-Eru" secondAttribute="top" id="DwO-oT-cmf"/>
                                 <constraint firstItem="qMK-Bo-Qyq" firstAttribute="top" secondItem="Eok-v3-gNg" secondAttribute="bottom" id="J3m-vc-SWf"/>
                                 <constraint firstItem="PGh-cK-FMC" firstAttribute="leading" secondItem="fiB-3F-Eru" secondAttribute="leading" id="Kv5-HV-bSd"/>
-                                <constraint firstItem="vEE-f1-vNI" firstAttribute="leading" secondItem="k51-r2-HCQ" secondAttribute="leading" constant="6" id="LUp-Xp-4cz"/>
-                                <constraint firstItem="caj-AF-4YW" firstAttribute="top" secondItem="k51-r2-HCQ" secondAttribute="top" constant="6" id="LjN-D6-4kM"/>
+                                <constraint firstItem="vEE-f1-vNI" firstAttribute="leading" secondItem="k51-r2-HCQ" secondAttribute="leading" constant="10" id="LUp-Xp-4cz"/>
+                                <constraint firstItem="caj-AF-4YW" firstAttribute="top" secondItem="k51-r2-HCQ" secondAttribute="top" constant="16" id="LjN-D6-4kM"/>
                                 <constraint firstAttribute="bottom" secondItem="qMK-Bo-Qyq" secondAttribute="bottom" id="Lrd-Xy-Eae"/>
-                                <constraint firstItem="vEE-f1-vNI" firstAttribute="bottom" secondItem="k51-r2-HCQ" secondAttribute="bottom" constant="-6" id="Mf5-SB-2Ph"/>
+                                <constraint firstItem="vEE-f1-vNI" firstAttribute="bottom" secondItem="k51-r2-HCQ" secondAttribute="bottom" constant="-16" id="Mf5-SB-2Ph"/>
                                 <constraint firstItem="caj-AF-4YW" firstAttribute="top" secondItem="fiB-3F-Eru" secondAttribute="top" constant="103" id="QQa-UC-8Pz"/>
                                 <constraint firstItem="Eok-v3-gNg" firstAttribute="top" secondItem="fiB-3F-Eru" secondAttribute="top" id="R1z-Lc-b1t"/>
                                 <constraint firstItem="Eok-v3-gNg" firstAttribute="leading" secondItem="fiB-3F-Eru" secondAttribute="leading" id="T7o-qS-zon"/>
-                                <constraint firstItem="vEE-f1-vNI" firstAttribute="trailing" secondItem="k51-r2-HCQ" secondAttribute="trailing" constant="-6" id="VNf-Lg-5vR"/>
+                                <constraint firstItem="vEE-f1-vNI" firstAttribute="trailing" secondItem="k51-r2-HCQ" secondAttribute="trailing" constant="-10" id="VNf-Lg-5vR"/>
                                 <constraint firstItem="vEE-f1-vNI" firstAttribute="top" secondItem="caj-AF-4YW" secondAttribute="bottom" constant="8" id="WXW-lL-Mgj"/>
                                 <constraint firstAttribute="trailing" secondItem="PGh-cK-FMC" secondAttribute="trailing" id="kA4-eL-UTd"/>
                                 <constraint firstItem="caj-AF-4YW" firstAttribute="centerX" secondItem="fiB-3F-Eru" secondAttribute="centerX" id="mg9-jp-KiL"/>
