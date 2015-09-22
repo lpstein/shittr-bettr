@@ -23,6 +23,7 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
   @IBOutlet weak var followingCount: UILabel!
   @IBOutlet weak var followersCount: UILabel!
   @IBOutlet weak var infoStack: UIStackView!
+  @IBOutlet weak var funkEffect: UIVisualEffectView!
   
   
   var source = TweetTimelineSource.Home
@@ -66,6 +67,9 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
       tableView.insertSubview(refreshControl!, atIndex: 0)
     }
     
+    funkEffect.clipsToBounds = true
+    funkEffect.layer.cornerRadius = 8
+    
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
     
@@ -94,7 +98,6 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
       let y = offset + navHeight
       
       blurEffect.alpha = max(0, min(1, y * 3 / tableView.tableHeaderView!.bounds.height))
-      NSLog("Alpha: \(blurEffect.alpha)")
     }
   }
   

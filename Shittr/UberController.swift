@@ -120,7 +120,5 @@ class UberController : UIViewController {
     ], animations: { () -> Void in
       self.primaryView.transform = CGAffineTransformMakeTranslation(target, 0)
     }, completion: nil)
-    
-    NSLog("Animation duration: \(Int(time * 1000))")
   }
 }
