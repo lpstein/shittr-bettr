@@ -22,6 +22,7 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
   @IBOutlet weak var tweetCount: UILabel!
   @IBOutlet weak var followingCount: UILabel!
   @IBOutlet weak var followersCount: UILabel!
+  @IBOutlet weak var infoStack: UIStackView!
   
   
   var source = TweetTimelineSource.Home
@@ -83,6 +84,11 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
   
   override func scrollViewDidScroll(scrollView: UIScrollView) {
     if let blurEffect = blurEffect {
+      if Settings.global["disable_cover_effects"] {
+        blurEffect.alpha = 0
+        return
+      }
+      
       let offset = scrollView.contentOffset.y
       let navHeight = navigationController?.navigationBar.frame.size.height ?? 0
       let y = offset + navHeight
@@ -196,6 +202,10 @@ class TweetListController: UITableViewController, AddTweetProtocol, TweetListPro
   }
   
   private func getMoreTweets() {
+    if Settings.global["disable_autoload"] {
+      return
+    }
+    
     if !fetchingMoreTweets && source != .User {
       
       fetchingMoreTweets = true
